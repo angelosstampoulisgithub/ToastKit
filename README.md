@@ -9,6 +9,7 @@ A lightweight SwiftUI toast library for iOS 13+ and macOS 10.15+.
 - Auto dismiss
 - Custom styles (default, success, error)
 - SwiftUI `.toast()` modifier
+#
 Usage Example
 import SwiftUI
 import ToastKit
@@ -33,3 +34,4 @@ struct ContentView: View {
         .toast($toast)
     }
 }
+#
