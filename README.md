@@ -1,6 +1,6 @@
 # ToastKit
 I made this simple library to use it in iOS Projects when i want to show a Toast
-# ToastKit 🍞
+# ToastKit 
 
 A lightweight SwiftUI toast library for iOS 13+ and macOS 10.15+.
 
