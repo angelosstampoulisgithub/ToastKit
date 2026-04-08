@@ -10,7 +10,11 @@ import SwiftUI
 struct ToastOverlayView: View {
     let message: String
     
-    var body: some View {
+    public init(message: String) {
+        self.message = message
+    }
+    
+    public var body: some View {
         Text(message)
             .foregroundColor(.white)
             .padding(.horizontal, 16)

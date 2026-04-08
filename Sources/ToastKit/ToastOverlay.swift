@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Angelos Staboulis on 9/4/26.
 //
@@ -9,14 +9,14 @@ import Foundation
 import SwiftUI
 struct ToastOverlay: ViewModifier {
     @ObservedObject var manager: ToastManager
-
+    
     func body(content: Content) -> some View {
         ZStack {
             content
-
-            if let message = manager.message {
+            
+            if let toast = manager.toast {
                 VStack {
-                    ToastOverlayView(message:message)
+                    ToastOverlayView(message: toast.message)
                     Spacer()
                 }
                 .padding(.top, 40)
@@ -26,7 +26,7 @@ struct ToastOverlay: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     func toast(manager: ToastManager) -> some View {
         self.modifier(ToastOverlay(manager: manager))
     }

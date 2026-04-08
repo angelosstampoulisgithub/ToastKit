@@ -7,17 +7,20 @@
 
 import Foundation
 import SwiftUI
-final class ToastManager: ObservableObject {
-    @Published var message: String? = nil
 
-    func show(_ text: String, duration: Double = 2.0) {
+public final class ToastManager: ObservableObject {
+    @Published public var toast: Toast? = nil
+
+    public init() {}
+
+    public func show(_ message: String, duration: Double = 2.0) {
         withAnimation {
-            message = text
+            toast = Toast(message: message)
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             withAnimation {
-                self.message = nil
+                self.toast = nil
             }
         }
     }
