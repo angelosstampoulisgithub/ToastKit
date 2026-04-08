@@ -18,21 +18,28 @@ public struct ToastModifier: ViewModifier {
             content
 
             if let toast {
-                VStack {
-                    if toast.position == .bottom { Spacer() }
-
-                    ToastView(toast: toast)
-                        .transition(.opacity.combined(with: .scale))
-
-                    if toast.position == .top { Spacer() }
-                }
-                .padding()
-                .onAppear {
-                    scheduleDismiss(toast)
-                }
+                toastContainer(toast)
+                    .transition(.move(edge: toast.position == .top ? .top : .bottom)
+                                    .combined(with: .opacity))
+                    .onAppear { scheduleDismiss(toast) }
             }
         }
+        // Το animation πρέπει να μπει στο ZStack, αλλά με value = toast
         .animation(.easeInOut, value: toast != nil)
+    }
+
+    @ViewBuilder
+    private func toastContainer(_ toast: Toast) -> some View {
+        VStack {
+            if toast.position == .bottom { Spacer() }
+
+            ToastView(toast: toast)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+
+            if toast.position == .top { Spacer() }
+        }
+        .padding()
     }
 
     private func scheduleDismiss(_ toast: Toast) {
@@ -46,3 +53,4 @@ public struct ToastModifier: ViewModifier {
         DispatchQueue.main.asyncAfter(deadline: .now() + toast.duration, execute: task)
     }
 }
+
