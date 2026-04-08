@@ -19,6 +19,7 @@ struct ToastOverlayView: View {
             .foregroundColor(.white)
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
+            .background(Color.black.opacity(0.85)) 
             .cornerRadius(12)
             .shadow(radius: 4)
             .transition(.move(edge: .top).combined(with: .opacity))
